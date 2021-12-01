@@ -7,18 +7,7 @@ var UserSchema = new Schema({
     ciudad : String,
     contrasena : String,
     tipoUsuario : String,
-    nombreEmpresa : String,
-    ubicacion :String,
-    direccion : String,
-    tipo : String,
-    servicio : String,
-    planes : String,
-    mediosPago : String,
-    promociones : String,
-    compras : Array,
-    estado : Boolean,
-    permisos : Boolean
-
+    estado : Boolean
 });
 
 module.exports = mongoose.model('User', UserSchema);

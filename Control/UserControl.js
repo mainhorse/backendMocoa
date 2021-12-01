@@ -72,9 +72,31 @@ function loginUser(req, res){
     });
 }
 
+function updateUser(req, res){
+    let idUsuario = req.params.id;
+    let datos = req.body;
+    User.findByIdAndUpdate(idUsuario,datos, (err, usuarioActualizado)=>{
+        if(err){
+            res.status(500).send({mensaje : 'Error en el servidor'});
+        }else {
+            if(!usuarioActualizado){
+                res.status(401).send({mensaje : 'No se pudieron actualizar los datos, intente mas tarde'})
+            }else{
+                User.findById(idUsuario, (err, actualizacion)=>{
+                    res.status(200).send({
+                        mensaje : 'Se han actualizado tus datos',
+                        usuario : actualizacion
+                    })
+                })
+            }
+        }
+    })
+}
+
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    updateUser
 }
    
